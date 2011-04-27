@@ -4,7 +4,7 @@ module Mongoid #:nodoc:
     class In < Default
       # Return true if the attribute is in the values.
       def matches?(value)
-        value.values.first.include?(@attribute)
+        Array.wrap(@attribute).any? { |e| value.values.first.include?(e) }
       end
     end
   end
